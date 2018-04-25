@@ -146,7 +146,7 @@ public class CatalogActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertPet();
+                insertProduct();
                 displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
@@ -158,16 +158,17 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
     //methods needed
-    private void insertPet() {
+    private void insertProduct() {
         //get db in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         //create content values
         ContentValues values = new ContentValues();
-        values.put(PetContract.PetEntry.COLUMN_PET_NAME, "Toto");
-        values.put(PetContract.PetEntry.COLUMN_PET_BREED, "Terrier");
-        values.put(PetContract.PetEntry.COLUMN_PET_GENDER, PetContract.PetEntry.GENDER_MALE);
-        values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT, 7);
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, "Bulb");
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE, 20);
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, 12);
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, "Amazon");
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, "023456152");
 
         //insert a new row in the database
         // The first argument for db.insert() is the pets table name.
@@ -176,6 +177,6 @@ public class CatalogActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto.
-        long newRowId = db.insert(PetContract.PetEntry.TABLE_NAME, null, values);
+        long newRowId = db.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
     }
 }
