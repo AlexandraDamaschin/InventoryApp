@@ -25,11 +25,11 @@ public final class InventoryContract {
 
         // Price of the product.
         // Type: int
-        public final static int COLUMN_PRODUCT_PRICE = 1;
+        public final static String COLUMN_PRODUCT_PRICE = "1";
 
         // Quantity of the product.
         // Type: int
-        public final static int COLUMN_PRODUCT_QUANTITY = 1;
+        public final static String COLUMN_PRODUCT_QUANTITY = "1";
 
         // Supplier Name of the product.
         // Type: TEXT
@@ -37,7 +37,7 @@ public final class InventoryContract {
 
         // Supplier Phone Number of the product.
         // Type: int
-        public final static int COLUMN_PRODUCT_SUPPLIER_PHONE = 04234;
+        public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "04234";
     }
 
 }
