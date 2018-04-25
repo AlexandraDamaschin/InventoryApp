@@ -82,7 +82,7 @@ public class CatalogActivity extends AppCompatActivity {
                 null                     // The sort order
         );
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_pet);
+        TextView displayView = (TextView) findViewById(R.id.text_view_product);
 
         try {
             // Create a header in the Text View that looks like this:
