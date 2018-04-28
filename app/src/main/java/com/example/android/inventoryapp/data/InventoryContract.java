@@ -25,19 +25,19 @@ public final class InventoryContract {
 
         // Price of the product.
         // Type: int
-        public final static String COLUMN_PRODUCT_PRICE = "1";
+        public final static String COLUMN_PRODUCT_PRICE = "price";
 
         // Quantity of the product.
         // Type: int
-        public final static String COLUMN_PRODUCT_QUANTITY = "1";
+        public final static String COLUMN_PRODUCT_QUANTITY = "quantity";
 
         // Supplier Name of the product.
         // Type: TEXT
-        public final static String COLUMN_PRODUCT_SUPPLIER_NAME = "supplier name";
+        public final static String COLUMN_PRODUCT_SUPPLIER_NAME = "supplierName";
 
         // Supplier Phone Number of the product.
         // Type: int
-        public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "(08)123123";
+        public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "supplierPhone";
     }
 
 }

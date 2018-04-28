@@ -90,7 +90,7 @@ public class CatalogActivity extends AppCompatActivity {
         try {
             // Create a header in the Text View that looks like this:
             // _id - name - breed - gender - weight
-            displayView.setText("The pets table contains " + cursor.getCount() + " pets.\n\n");
+            displayView.setText("The inventory table contains " + cursor.getCount() + " products.\n\n");
             displayView.append(InventoryContract.ProductEntry._ID + " - " +
                     InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME + " - " +
                     InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE + " - " +
