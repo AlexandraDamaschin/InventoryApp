@@ -37,7 +37,7 @@ public final class InventoryContract {
 
         // Supplier Phone Number of the product.
         // Type: int
-        public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "04234";
+        public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "(08)123123";
     }
 
 }

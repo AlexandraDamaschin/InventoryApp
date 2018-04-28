@@ -68,11 +68,12 @@
                 android:hint="@string/hint_product_supplier_name"
                 android:inputType="textCapWords" />
 
-            <TextView
+            <EditText
                 android:id="@+id/edit_product_supplier_phone"
                 style="@style/EditorUnitsStyle"
                 android:hint="@string/hint_product_supplier_phone"
-                android:inputType="textCapWords" />
+                android:inputType="text"/>
         </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>

@@ -11,7 +11,7 @@
     <string name="hint_product_price">120</string>
     <string name="hint_product_quantity">12</string>
     <string name="hint_product_supplier_name">Andrew Leght</string>
-    <string name="hint_product_supplier_phone">098878281</string>
+    <string name="hint_product_supplier_phone">(08)8878281</string>
     <string name="saving_error">Error with saving the product</string>
     <string name="saving_success">Product saved with row id:</string>
 </resources>
