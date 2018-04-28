@@ -24,11 +24,11 @@ public final class InventoryContract {
         public final static String COLUMN_PRODUCT_NAME = "name";
 
         // Price of the product.
-        // Type: int
+        // Type: INTEGER
         public final static String COLUMN_PRODUCT_PRICE = "price";
 
         // Quantity of the product.
-        // Type: int
+        // Type: INTEGER
         public final static String COLUMN_PRODUCT_QUANTITY = "quantity";
 
         // Supplier Name of the product.
@@ -36,7 +36,7 @@ public final class InventoryContract {
         public final static String COLUMN_PRODUCT_SUPPLIER_NAME = "supplierName";
 
         // Supplier Phone Number of the product.
-        // Type: int
+        // Type: TEXT
         public final static String COLUMN_PRODUCT_SUPPLIER_PHONE = "supplierPhone";
     }
 

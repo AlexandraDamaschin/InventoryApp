@@ -23,7 +23,7 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
     // This is called when the database is created for the first time.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create a String that contains the SQL statement to create the pets table
+        // Create a String that contains the SQL statement to create the inventory table
         String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE "
                 + InventoryContract.ProductEntry.TABLE_NAME + " ("
                 + InventoryContract.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "

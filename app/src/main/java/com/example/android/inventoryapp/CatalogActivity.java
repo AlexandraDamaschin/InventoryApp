@@ -60,9 +60,9 @@ public class CatalogActivity extends AppCompatActivity {
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        // Perform this raw SQL query "SELECT * FROM pets"
+        // Perform this raw SQL query "SELECT * FROM inventory"
         // to get a Cursor that contains all rows from the pets table.
-        //Cursor cursor = db.rawQuery("SELECT * FROM " + PetContract.PetEntry.TABLE_NAME, null);
+        //Cursor cursor = db.rawQuery("SELECT * FROM " + InventoryContract.ProductEntry.TABLE_NAME, null);
 
         //define projection
         String[] projection = {
@@ -74,7 +74,7 @@ public class CatalogActivity extends AppCompatActivity {
                 InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE,
         };
 
-        // Perform a query on the pets table
+        // Perform a query on the inventory table
         Cursor cursor = db.query(
                 InventoryContract.ProductEntry.TABLE_NAME,   // The table to query
                 projection,                        // The columns to return
@@ -82,14 +82,14 @@ public class CatalogActivity extends AppCompatActivity {
                 null,                   // The values for the WHERE clause
                 null,                      // Don't group the rows
                 null,                       // Don't filter by row groups
-                null                     // The sort order
+                null                       // The sort order
         );
 
         TextView displayView = (TextView) findViewById(R.id.text_view_product);
 
         try {
             // Create a header in the Text View that looks like this:
-            // _id - name - breed - gender - weight
+            // _id - name - price - quantity - supplierName - supplierPhone
             displayView.setText("The inventory table contains " + cursor.getCount() + " products.\n\n");
             displayView.append(InventoryContract.ProductEntry._ID + " - " +
                     InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME + " - " +
@@ -177,7 +177,7 @@ public class CatalogActivity extends AppCompatActivity {
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
-        // The third argument is the ContentValues object containing the info for Toto.
+        // The third argument is the ContentValues object containing the info for Bulb.
         long newRowId = db.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
     }
 }

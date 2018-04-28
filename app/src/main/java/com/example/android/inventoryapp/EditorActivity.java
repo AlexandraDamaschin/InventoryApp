@@ -101,10 +101,10 @@ public class EditorActivity extends AppCompatActivity {
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, supplierNameEditText);
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
 
-        // Insert a new row for pet in the database,
+        // Insert a new row for inventory in the database,
         long newRowId = db.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
 
-        // Show a toast message depending on whether or not the insertion was successful
+        // Show a toast message depending on whether or not the insertion was successful or not
         //fail
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
