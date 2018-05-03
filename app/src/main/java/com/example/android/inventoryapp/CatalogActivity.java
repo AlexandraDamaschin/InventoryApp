@@ -132,11 +132,10 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
                 insertProduct();
-                //displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                deleteAllPets();
+                deleteAllProducts();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -159,11 +158,11 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Bulb.
-        Uri newRowId = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
+        Uri newUri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
     }
 
     // Helper method to delete all pets in the database.
-    private void deleteAllPets() {
+    private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(InventoryContract.ProductEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from product database");
     }
