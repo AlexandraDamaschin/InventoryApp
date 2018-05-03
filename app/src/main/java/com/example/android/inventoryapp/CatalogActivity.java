@@ -88,97 +88,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        displayDatabaseInfo();
-    }
-
-    /**
-     * Temporary helper method to display information in the onscreen TextView about the state of
-     * the inventory database.
-     */
-    private void displayDatabaseInfo() {
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        InventoryDbHelper mDbHelper = new InventoryDbHelper(this);
-
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        // Perform this raw SQL query "SELECT * FROM inventory"
-        // to get a Cursor that contains all rows from the pets table.
-        //Cursor cursor = db.rawQuery("SELECT * FROM " + InventoryContract.ProductEntry.TABLE_NAME, null);
-
-        //define projection
-        String[] projection = {
-                InventoryContract.ProductEntry._ID,
-                InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME,
-                InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE,
-                InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY,
-                InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME,
-                InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE,
-        };
-
-        // Perform a query on the inventory table
-        Cursor cursor = db.query(
-                InventoryContract.ProductEntry.TABLE_NAME,   // The table to query
-                projection,                        // The columns to return
-                null,                      // The columns for the WHERE clause
-                null,                   // The values for the WHERE clause
-                null,                      // Don't group the rows
-                null,                       // Don't filter by row groups
-                null                       // The sort order
-        );
-
-        TextView displayView = (TextView) findViewById(R.id.text_view_product);
-
-        try {
-            // Create a header in the Text View that looks like this:
-            // _id - name - price - quantity - supplierName - supplierPhone
-            displayView.setText("The inventory table contains " + cursor.getCount() + " products.\n\n");
-            displayView.append(InventoryContract.ProductEntry._ID + " - " +
-                    InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME + " - " +
-                    InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE + " - " +
-                    InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY + " - " +
-                    InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME + " - " +
-                    InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE + "\n");
-
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME);
-            int priceColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE);
-            int quantityColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
-            int supplierNameColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME);
-            int supplierPhoneColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE);
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                int currentPrice = cursor.getInt(priceColumnIndex);
-                int currentQuantity = cursor.getInt(quantityColumnIndex);
-                String currentSupplierName = cursor.getString(supplierNameColumnIndex);
-                String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
-
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" +
-                        currentID + " - " +
-                        currentName + " - " +
-                        currentPrice + " - " +
-                        currentQuantity + " - " +
-                        currentSupplierName + " - " +
-                        currentSupplierPhone));
-            }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
@@ -223,7 +132,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
                 insertProduct();
-                displayDatabaseInfo();
+                //displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
@@ -235,9 +144,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     //methods needed
     private void insertProduct() {
-        //get db in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         //create content values
         ContentValues values = new ContentValues();
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, "Bulb");
@@ -253,9 +159,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Bulb.
-        long newRowId = db.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
+        Uri newRowId = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
     }
-
 
     // Helper method to delete all pets in the database.
     private void deleteAllPets() {
