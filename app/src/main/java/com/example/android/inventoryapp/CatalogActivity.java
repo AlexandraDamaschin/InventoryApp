@@ -48,6 +48,10 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             }
         });
 
+        //call increase quantity
+
+        //call decrease quantity
+
         // Find the ListView which will be populated with the product data
         ListView productListView = (ListView) findViewById(R.id.list);
 
@@ -165,5 +169,24 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(InventoryContract.ProductEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from product database");
+    }
+
+    private  void increaseQunaity(){
+        //get database in readable mode
+        SQLiteDatabase database = mDbHelper.getReadableDatabase();
+        //find view
+        TextView increaseQuantity = (TextView) findViewById(R.id.increase_quantity);
+        //update quantity by increase current quantity by one
+
+
+    }
+
+    private  void decreaseQuantity(){
+        //get database in readable mode
+        SQLiteDatabase database = mDbHelper.getReadableDatabase();
+        //find view
+        TextView decreaseQuantity = (TextView) findViewById(R.id.decrease_quantity);
+        //update quantity by decrease current quantity by one
+
     }
 }
