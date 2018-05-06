@@ -305,7 +305,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         showUnsavedChangesDialog(discardButtonClickListener);
     }
 
-
     // Show a dialog that warns the user there are unsaved changes that will be lost
     //if they continue leaving the editor.
     private void showUnsavedChangesDialog(
