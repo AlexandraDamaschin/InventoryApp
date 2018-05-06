@@ -9,9 +9,4 @@
     <dimen name="quantity_padding">15dp</dimen>
     <dimen name="quantity_button_size">40dp</dimen>
     <dimen name="quantity_button_padding">15dp</dimen>
-    <dimen name=""></dimen>
-    <dimen name=""></dimen>
-    <dimen name=""></dimen>
-    <dimen name=""></dimen>
-    <dimen name=""></dimen>
 </resources>
