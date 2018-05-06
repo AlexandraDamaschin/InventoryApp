@@ -170,8 +170,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from the input fields.
         mNameEditText.setText("");
-        mPriceEditText.setText(0);
-        mQuantityEditText.setText(0);
+        mPriceEditText.setText("");
+        mQuantityEditText.setText("");
         mSupplierNameEditText.setText("");
         mSupplierPhoneEditText.setText("");
     }

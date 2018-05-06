@@ -52,6 +52,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         // Update the TextViews with the attributes for the current product
         nameTextView.setText(productName);
         quantityTextView.setText(productQuantity);
+        priceTextView.setText(productPrice);
     }
 
 }
