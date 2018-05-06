@@ -205,14 +205,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // Pop up confirmation dialog for deletion
                 showDeleteConfirmationDialog();
                 return true;
-            //increase quantity by one
-            case R.id.increase_quantity:
-                increaseQuantity();
-                return true;
-            //decrease quantity by one
-            case R.id.decrease_quantity:
-                decreaseQunatity();
-                return true;
             // Respond to a click on the "Up" arrow button in the app bar
             case android.R.id.home:
                 // If the product hasn't changed, continue with navigating up to parent activity
@@ -403,7 +395,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //decrease quantity
-    private void decreaseQunatity() {
+    private void decreaseQuantity() {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
