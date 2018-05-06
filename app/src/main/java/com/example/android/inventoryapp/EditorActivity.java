@@ -133,26 +133,25 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         //call supplier
         Button callButton = findViewById(R.id.call_supplier);
+        //get phone number
+        String phone = mSupplierPhoneEditText.getText().toString();
+
         // Setup the item click listener
-        callButton.setOnClickListener(new AdapterView.OnItemClickListener() {
+        callButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onClick(View v) {
                 // Create new intent to go to {@link EditorActivity}
-                Intent intent = new Intent(Intent.ACTION_CALL, EditorActivity.class);
-
-                // Form the content URI that represents the specific product that was clicked on,
-                // by appending the "id" (passed as input to this method) onto the
-                // {@link ProductEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.android.inventoryapp/inventory/2"
-                // if the pet with ID 2 was clicked on.
-                Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.ProductEntry.CONTENT_URI, id);
-
-                // Set the URI on the data field of the intent
-                intent.setData(currentProductUri);
-
-                // Launch the {@link EditorActivity} to display the data for the current product.
-                startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
+            // Set the URI on the data field of the intent
+                intent.setData(phone);
+
+            // Launch the {@link EditorActivity} to display the data for the current product.
+            startActivity(intent);
+
         });
 
     }
