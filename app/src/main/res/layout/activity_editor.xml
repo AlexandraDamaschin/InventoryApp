@@ -24,29 +24,60 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp">
 
+            <!--product name-->
             <EditText
                 android:id="@+id/edit_product_name"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_product_name"
                 android:inputType="textCapWords" />
-
+            <!--price-->
             <EditText
                 android:id="@+id/edit_product_price"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_product_price"
                 android:inputType="number" />
-
-            <EditText
-                android:id="@+id/edit_product_quantity"
+            <!--quantity-->
+            <TextView
                 style="@style/EditorFieldStyle"
-                android:hint="@string/hint_product_quantity"
-                android:inputType="number" />
+                android:gravity="center_horizontal"
+                android:text="@string/quantity" />
+
+            <!--quantity linear layout-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <!--increase quantity-->
+                <ImageButton
+                    android:id="@+id/increase_quantity"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/plus" />
+
+                <!--quantity number-->
+                <EditText
+                    android:id="@+id/edit_product_quantity"
+                    style="@style/EditorFieldStyle"
+                    android:hint="@string/hint_product_quantity"
+                    android:inputType="number" />
+
+                <!--decrease quantity-->
+                <ImageButton
+                    android:id="@+id/decrease_quantity"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/minus" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-
     <LinearLayout
-        android:id="@+id/container_measurement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -63,19 +94,34 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp">
 
+            <!--supplier name-->
             <EditText
                 android:id="@+id/edit_product_supplier_name"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_product_supplier_name"
                 android:inputType="textCapWords" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edit_product_supplier_phone"
-                style="@style/EditorFieldStyle"
-                android:hint="@string/hint_product_supplier_phone"
-                android:inputType="text" />
+                <!--supplier phone-->
+                <EditText
+                    android:id="@+id/edit_product_supplier_phone"
+                    style="@style/EditorFieldStyle"
+                    android:hint="@string/hint_product_supplier_phone"
+                    android:inputType="text" />
+
+                <!--call button-->
+                <ImageButton
+                    android:id="@+id/call_supplier"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/call" />
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
+
+
 </LinearLayout>
