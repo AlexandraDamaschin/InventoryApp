@@ -2,36 +2,26 @@ package com.example.android.inventoryapp;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.TestLooperManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.inventoryapp.data.InventoryContract;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
-
-import java.net.URI;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -144,7 +134,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 String supplierPhoneEditText = mSupplierPhoneEditText.getText().toString().trim();
                 //set data
                 intent.setData(Uri.parse("tel:" + supplierPhoneEditText));
-
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -416,6 +408,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
+
         //crease current quantity by one
         currentQuantity++;
         ContentValues values = new ContentValues();

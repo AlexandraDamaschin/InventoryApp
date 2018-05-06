@@ -19,10 +19,10 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="@dimen/two_weight"
             android:orientation="vertical"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp">
+            android:paddingLeft="@dimen/overview_padding"
+            android:paddingRight="@dimen/overview_padding">
 
             <!--product name-->
             <EditText
@@ -47,16 +47,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="15dp">
+                android:padding="@dimen/quantity_padding">
 
-                <!--increase quantity-->
+                <!--decrease quantity-->
                 <Button
-                    android:id="@+id/increase_quantity"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/plus" />
+                    android:id="@+id/decrease_quantity"
+                    android:layout_width="@dimen/quantity_button_size"
+                    android:layout_height="@dimen/quantity_button_size"
+                    android:layout_marginLeft="@dimen/quantity_button_padding"
+                    android:layout_marginStart="@dimen/quantity_button_padding"
+                    android:background="@drawable/minus" />
 
                 <!--quantity number-->
                 <EditText
@@ -65,14 +65,14 @@
                     android:hint="@string/hint_product_quantity"
                     android:inputType="number" />
 
-                <!--decrease quantity-->
+                <!--increase quantity-->
                 <Button
-                    android:id="@+id/decrease_quantity"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:background="@drawable/minus" />
+                    android:id="@+id/increase_quantity"
+                    android:layout_width="@dimen/quantity_button_size"
+                    android:layout_height="@dimen/quantity_button_size"
+                    android:layout_marginEnd="@dimen/quantity_button_padding"
+                    android:layout_marginRight="@dimen/quantity_button_padding"
+                    android:background="@drawable/plus" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -89,10 +89,10 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="@dimen/two_weight"
             android:orientation="vertical"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp">
+            android:paddingLeft="@dimen/overview_padding"
+            android:paddingRight="@dimen/overview_padding">
 
             <!--supplier name-->
             <EditText
@@ -116,12 +116,11 @@
                 <!--call button-->
                 <Button
                     android:id="@+id/call_supplier"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/quantity_button_size"
+                    android:layout_height="@dimen/quantity_button_size"
                     android:background="@drawable/call" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 
 </LinearLayout>

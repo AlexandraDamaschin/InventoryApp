@@ -2,4 +2,16 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="empty_title_padding">16dp</dimen>
+    <dimen name="empty_subtitle_padding">8dp</dimen>
+    <dimen name="two_weight">2</dimen>
+    <dimen name="overview_padding">4dp</dimen>
+    <dimen name="quantity_padding">15dp</dimen>
+    <dimen name="quantity_button_size">40dp</dimen>
+    <dimen name="quantity_button_padding">15dp</dimen>
+    <dimen name=""></dimen>
+    <dimen name=""></dimen>
+    <dimen name=""></dimen>
+    <dimen name=""></dimen>
+    <dimen name=""></dimen>
 </resources>
