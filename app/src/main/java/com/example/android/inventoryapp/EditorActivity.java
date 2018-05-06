@@ -130,6 +130,31 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 decreaseQuantity();
             }
         });
+
+        //call supplier
+        Button callButton = findViewById(R.id.call_supplier);
+        // Setup the item click listener
+        callButton.setOnClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Create new intent to go to {@link EditorActivity}
+                Intent intent = new Intent(Intent.ACTION_CALL, EditorActivity.class);
+
+                // Form the content URI that represents the specific product that was clicked on,
+                // by appending the "id" (passed as input to this method) onto the
+                // {@link ProductEntry#CONTENT_URI}.
+                // For example, the URI would be "content://com.example.android.inventoryapp/inventory/2"
+                // if the pet with ID 2 was clicked on.
+                Uri currentProductUri = ContentUris.withAppendedId(InventoryContract.ProductEntry.CONTENT_URI, id);
+
+                // Set the URI on the data field of the intent
+                intent.setData(currentProductUri);
+
+                // Launch the {@link EditorActivity} to display the data for the current product.
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -413,7 +438,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         }
         //success
         else {
-            finish();
             Toast.makeText(this, getString(R.string.increase_success), Toast.LENGTH_SHORT).show();
         }
     }
@@ -439,7 +463,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         }
         //success
         else {
-            finish();
             Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
         }
 
