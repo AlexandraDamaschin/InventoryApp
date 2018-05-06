@@ -18,4 +18,16 @@
         android:id="@+id/order"
         android:title="@string/order_product"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/increase_quantity"
+        android:title="@string/increase_quantity"
+        android:icon="@drawable/plus"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/decrease_quantity"
+        android:icon="@drawable/minus"
+        android:title="@string/decrease_quantity"
+        app:showAsAction="always" />
+
 </menu>

@@ -35,4 +35,6 @@
     <string name="increase_success">Quantity increased</string>
     <string name="decrease_error">Error with decreasing quantity</string>
     <string name="decrease_success">Quantity decreased</string>
+    <string name="decrease_quantity">Decrease</string>
+    <string name="increase_quantity">Increase</string>
 </resources>

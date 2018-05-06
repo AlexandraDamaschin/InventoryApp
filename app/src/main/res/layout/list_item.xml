@@ -5,34 +5,27 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
-    <!--list with items-->
-    <LinearLayout
+    <!--product name-->
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"
-        android:orientation="vertical">
-        <!--product name-->
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/primary_text" />
-        <!--price-->
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text" />
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/primary_text" />
+    <!--price-->
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/primary_text" />
 
-        <!--quantity-->
-        <TextView
-            android:id="@+id/quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text" />
-    </LinearLayout>
-
+    <!--quantity-->
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/primary_text" />
 </LinearLayout>
+
