@@ -398,7 +398,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //success
         else {
             finish();
-            Toast.makeText(this, getString(R.string.increase_success) + rowsUpdated, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.increase_success), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -409,7 +409,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         int currentQuantity = Integer.parseInt(quantity);
         //crease current quantity by one
         currentQuantity--;
-        
+
         ContentValues values = new ContentValues();
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
 
@@ -424,7 +424,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //success
         else {
             finish();
-            Toast.makeText(this, getString(R.string.decrease_success) + rowsUpdated, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
         }
 
     }
