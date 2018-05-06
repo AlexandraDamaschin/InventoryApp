@@ -379,13 +379,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     //increase quantity
     private  void increaseQuantity(){
-        String quantityEditText = mQuantityEditText.getText().toString().trim();
-        int quantity = Integer.parseInt(quantityEditText);
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, ++);
 
-        int rowsUpdated = getContentResolver().update(mCurrentProductUri, quantity, null, null);
+        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
 
-
-        // Show a toast message depending on whether or not the insertion was successful or not
+        // Show a toast message depending on whether or not the increase was successful or not
         //fail
         if (rowsUpdated == -1) {
             // If the row uri is null, then there was an error with insertion.
@@ -399,6 +398,19 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
     //decrease quantity
     private  void  decreaseQunatity(){
+        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
+
+        // Show a toast message depending on whether or not the decrease was successful or not
+        //fail
+        if (rowsUpdated == -1) {
+            // If the row uri is null, then there was an error with insertion.
+            Toast.makeText(this, getString(R.string.decrease_error), Toast.LENGTH_SHORT).show();
+        }
+        //success
+        else {
+            finish();
+            Toast.makeText(this, getString(R.string.decrease_success) + rowsUpdated, Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
