@@ -31,4 +31,8 @@
     <string name="cancel">Cancel</string>
     <string name="unknown_price">Unknown price</string>
     <string name="order_product">Order product</string>
+    <string name="increase_error">Error with increasing quantity</string>
+    <string name="increase_success">Quantity increased</string>
+    <string name="decrease_error">Error with decreasing quantity</string>
+    <string name="decrease_success">Quantity decreased</string>
 </resources>

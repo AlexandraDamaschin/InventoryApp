@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.example.android.inventoryapp.data.InventoryContract;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
 
+import java.net.URI;
+
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //global variables needed
@@ -51,7 +53,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     // OnTouchListener that listens for any user touches on a View, implying that they are modifying
     // the view, and we change the mProductHasChanged boolean to true.
-    // check if changes are made
     // check if changes are made
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -204,6 +205,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // Pop up confirmation dialog for deletion
                 showDeleteConfirmationDialog();
                 return true;
+            //increase quantity by one
+            case R.id.increase_quantity:
+                increaseQuantity();
+                return true;
+            //decrease quantity by one
+            case R.id.decrease_quantity:
+                decreaseQunatity();
+                return true;
             // Respond to a click on the "Up" arrow button in the app bar
             case android.R.id.home:
                 // If the product hasn't changed, continue with navigating up to parent activity
@@ -329,7 +338,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         alertDialog.show();
     }
 
-
     //Get user input from editor and save new pet into database.
     private void insertProduct() {
         //read inputted fields
@@ -345,9 +353,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //create db helper
         InventoryDbHelper mDbHelper = new InventoryDbHelper(this);
 
-        //get db in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         // Create a ContentValues object
         ContentValues values = new ContentValues();
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, nameEditText);
@@ -356,19 +361,44 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, supplierNameEditText);
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
 
-        // Insert a new row for inventory in the database,
-        long newRowId = db.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
+        // Use provider to insert data
+        Uri uri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
 
         // Show a toast message depending on whether or not the insertion was successful or not
         //fail
-        if (newRowId == -1) {
-            // If the row ID is -1, then there was an error with insertion.
+        if (uri == null) {
+            // If the row uri is null, then there was an error with insertion.
             Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_SHORT).show();
         }
         //success
         else {
-            // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, getString(R.string.saving_success) + newRowId, Toast.LENGTH_SHORT).show();
+            finish();
+            Toast.makeText(this, getString(R.string.saving_success) + uri, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //increase quantity
+    private  void increaseQuantity(){
+        String quantityEditText = mQuantityEditText.getText().toString().trim();
+        int quantity = Integer.parseInt(quantityEditText);
+
+        int rowsUpdated = getContentResolver().update(mCurrentProductUri, quantity, null, null);
+
+
+        // Show a toast message depending on whether or not the insertion was successful or not
+        //fail
+        if (rowsUpdated == -1) {
+            // If the row uri is null, then there was an error with insertion.
+            Toast.makeText(this, getString(R.string.increase_error), Toast.LENGTH_SHORT).show();
+        }
+        //success
+        else {
+            finish();
+            Toast.makeText(this, getString(R.string.increase_success) + rowsUpdated, Toast.LENGTH_SHORT).show();
+        }
+    }
+    //decrease quantity
+    private  void  decreaseQunatity(){
+
     }
 }
