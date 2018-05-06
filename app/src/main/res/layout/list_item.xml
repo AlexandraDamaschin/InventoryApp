@@ -11,9 +11,10 @@
         android:orientation="horizontal">
         <!--increase quantity-->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="increase" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="increase"
+            android:background="@drawable/plus"/>
 
         <!--list with items-->
         <LinearLayout
@@ -46,9 +47,10 @@
 
         <!--decrease quantity-->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="decrease" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="decrease"
+            android:background="@drawable/minus"/>
     </LinearLayout>
 
 </LinearLayout>
