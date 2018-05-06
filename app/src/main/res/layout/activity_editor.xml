@@ -114,7 +114,7 @@
                     android:inputType="text" />
 
                 <!--call button-->
-                <ImageButton
+                <Button
                     android:id="@+id/call_supplier"
                     android:layout_width="40dp"
                     android:layout_height="40dp"

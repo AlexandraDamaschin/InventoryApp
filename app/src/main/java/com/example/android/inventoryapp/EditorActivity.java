@@ -133,27 +133,20 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         //call supplier
         Button callButton = findViewById(R.id.call_supplier);
-        //get phone number
-        String phone = mSupplierPhoneEditText.getText().toString();
 
         // Setup the item click listener
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create new intent to go to {@link EditorActivity}
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+                // Create new intent DIAL
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                //get phone number
+                String supplierPhoneEditText = mSupplierPhoneEditText.getText().toString().trim();
+                //set data
+                intent.setData(Uri.parse("tel:" + supplierPhoneEditText));
+
             }
-            // Set the URI on the data field of the intent
-                intent.setData(phone);
-
-            // Launch the {@link EditorActivity} to display the data for the current product.
-            startActivity(intent);
-
         });
-
     }
 
     @Override
@@ -281,6 +274,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //show delete confirmation
+
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
         // for the postive and negative buttons on the dialog.
