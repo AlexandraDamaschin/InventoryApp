@@ -378,9 +378,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //increase quantity
-    private  void increaseQuantity(){
+    private void increaseQuantity() {
+        //get current quantity for current product
+        String quantity = mQuantityEditText.getText().toString();
+        int currentQuantity = Integer.parseInt(quantity);
+        //crease current quantity by one
+        currentQuantity++;
         ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, ++);
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
 
         int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
 
@@ -396,8 +401,18 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             Toast.makeText(this, getString(R.string.increase_success) + rowsUpdated, Toast.LENGTH_SHORT).show();
         }
     }
+
     //decrease quantity
-    private  void  decreaseQunatity(){
+    private void decreaseQunatity() {
+        //get current quantity for current product
+        String quantity = mQuantityEditText.getText().toString();
+        int currentQuantity = Integer.parseInt(quantity);
+        //crease current quantity by one
+        currentQuantity--;
+        
+        ContentValues values = new ContentValues();
+        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
+
         int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
 
         // Show a toast message depending on whether or not the decrease was successful or not
