@@ -85,19 +85,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         // Kick off the loader
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
-
-        //order button
-        //decrease quantity
-        Button decreaseButton = findViewById(R.id.order);
-        // Setup the item click listener
-        decreaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decreaseQuantity();
-            }
-        });
-
-
     }
 
     @Override
@@ -178,33 +165,5 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(InventoryContract.ProductEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from product database");
-    }
-
-    //decrease quantity
-    private void decreaseQuantity() {
-
-        //get current quantity for current product
-        int rowsDeleted =query(uri, projection, null, null, null);
-
-        int currentQuantity = Integer.parseInt(quantity);
-        //crease current quantity by one
-        currentQuantity--;
-
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
-
-        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
-
-        // Show a toast message depending on whether or not the decrease was successful or not
-        //fail
-        if (rowsUpdated == -1) {
-            // If the row uri is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.decrease_error), Toast.LENGTH_SHORT).show();
-        }
-        //success
-        else {
-            Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
-        }
-
     }
 }
