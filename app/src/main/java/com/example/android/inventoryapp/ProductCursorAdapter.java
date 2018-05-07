@@ -1,16 +1,12 @@
 package com.example.android.inventoryapp;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
@@ -48,7 +44,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         // Read the product attributes from the Cursor for the current product
         String productName = cursor.getString(nameColumnIndex);
         String productPrice = cursor.getString(priceColumnIndex);
-        String productQuantity = cursor.getString(quantityColumnIndex);
+        final int productQuantity = cursor.getInt(quantityColumnIndex);
 
         // If the pet price is empty string or null, then use some default text
         // that says "Unknown price", so the TextView isn't blank.
@@ -69,34 +65,16 @@ public class ProductCursorAdapter extends CursorAdapter {
         quantityDecreased.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onItemClick(View v) {
-                decreaseQuantity();
+                //decrease quantity
+                productQuantity --;
+                // put in content value
+                ContentValues values = new ContentValues();
+                values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, productQuantity);
+                int rowsUpdated = getContentResolver().update(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, values, null, null);
+
             }
         });
     }
 
-    //decrease quantity
-    private void decreaseQuantity() {
-
-        int currentQuantity = Integer.parseInt(quantityDecreased);
-        //crease current quantity by one
-        currentQuantity--;
-
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
-
-        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
-
-        // Show a toast message depending on whether or not the decrease was successful or not
-        //fail
-        if (rowsUpdated == -1) {
-            // If the row uri is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.decrease_error), Toast.LENGTH_SHORT).show();
-        }
-        //success
-        else {
-            Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
 }
