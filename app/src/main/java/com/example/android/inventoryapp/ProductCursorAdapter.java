@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
         TextView priceTextView = (TextView) view.findViewById(R.id.price);
         TextView quantityTextView = (TextView) view.findViewById(R.id.quantity);
+        Button quantityDecreased= (Button) view.findViewById(R.id.order);
 
         // Find the columns of product attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME);

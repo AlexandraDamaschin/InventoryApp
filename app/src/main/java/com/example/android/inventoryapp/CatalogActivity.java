@@ -184,8 +184,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     private void decreaseQuantity() {
 
         //get current quantity for current product
-        int rowsDeleted = getContentResolver().query(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY);
-        
+        int rowsDeleted =query(uri, projection, null, null, null);
+
         int currentQuantity = Integer.parseInt(quantity);
         //crease current quantity by one
         currentQuantity--;
