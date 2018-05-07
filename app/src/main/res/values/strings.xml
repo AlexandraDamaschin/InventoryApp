@@ -37,5 +37,6 @@
     <string name="decrease_success">Quantity decreased</string>
     <string name="decrease_quantity">Decrease</string>
     <string name="increase_quantity">Increase</string>
-    <string name="quantity">Quantity</string>
+    <string name="quantity">Quantity:</string>
+    <string name="price">Price:</string>
 </resources>

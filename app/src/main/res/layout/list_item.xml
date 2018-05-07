@@ -5,27 +5,74 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
-    <!--product name-->
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/primary_text" />
-    <!--price-->
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@color/primary_text" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!--quantity-->
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@color/primary_text" />
+        <!--product name-->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/primary_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:layout_marginRight="@dimen/text_margin"
+                android:text="@string/price"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text" />
+
+            <!--price-->
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:layout_marginRight="@dimen/text_margin"
+                android:text="@string/quantity"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text" />
+
+            <!--quantity-->
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text" />
+
+            <!--decrease quantity-->
+            <Button
+                android:id="@+id/decrease_quantity"
+                android:layout_width="@dimen/order_size"
+                android:layout_height="@dimen/order_size"
+                android:layout_marginLeft="@dimen/order_margin"
+                android:layout_marginStart="@dimen/order_margin"
+                android:background="@drawable/oder" />
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
 
