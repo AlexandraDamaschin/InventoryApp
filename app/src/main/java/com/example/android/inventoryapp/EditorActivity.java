@@ -161,7 +161,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,    // Parent activity context
-                mCurrentProductUri,             // Query the content URI for the current pet
+                mCurrentProductUri,             // Query the content URI for the current product
                 projection,                     // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                // No selection arguments

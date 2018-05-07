@@ -2,6 +2,7 @@ package com.example.android.inventoryapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -62,14 +63,14 @@ public class ProductCursorAdapter extends CursorAdapter {
 
 
         //call order button when is clicked to decrease quantity
-        Button quantityDecreased= (Button) view.findViewById(R.id.order);
+        Button quantityDecreased = (Button) view.findViewById(R.id.order);
 
         // Setup the item click listener
         quantityDecreased.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onItemClick(View v) {
                 //decrease quantity
-                productQuantity --;
+                productQuantity--;
                 // put in content value
                 ContentValues values = new ContentValues();
                 values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, productQuantity);
@@ -77,6 +78,4 @@ public class ProductCursorAdapter extends CursorAdapter {
             }
         });
     }
-
-
 }
