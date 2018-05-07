@@ -3,6 +3,7 @@ package com.example.android.inventoryapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.example.android.inventoryapp.data.InventoryContract;
 
 public class ProductCursorAdapter extends CursorAdapter {
+    // Content URI for the existing product (null if it's a new product)
+    private Uri mCurrentProductUri;
 
     //constructor
     public ProductCursorAdapter(Context context, Cursor c) {
@@ -70,8 +73,7 @@ public class ProductCursorAdapter extends CursorAdapter {
                 // put in content value
                 ContentValues values = new ContentValues();
                 values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, productQuantity);
-                int rowsUpdated = getContentResolver().update(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, values, null, null);
-
+                int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
             }
         });
     }
