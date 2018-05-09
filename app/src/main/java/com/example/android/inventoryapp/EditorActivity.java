@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -366,6 +367,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     //Get user input from editor and save new pet into database.
     private void insertProduct() {
+        int check = 0;
         //read inputted fields
         //use trim to eliminate white spaces
         String nameEditText = mNameEditText.getText().toString().trim();
@@ -373,12 +375,42 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String quantityEditText = mQuantityEditText.getText().toString().trim();
         String supplierNameEditText = mSupplierNameEditText.getText().toString().trim();
         String supplierPhoneEditText = mSupplierPhoneEditText.getText().toString().trim();
+        //check if all fields are empty
+        //then add a toast message and return
+        //check for name
+        if (TextUtils.isEmpty(nameEditText)) {
+            check = 1;
+            Toast.makeText(this, R.string.missing_product_name, Toast.LENGTH_SHORT).show();
+        }
+        //check for price
+        if (TextUtils.isEmpty(priceEditText)) {
+            check = 1;
+            Toast.makeText(this, R.string.missing_product_price, Toast.LENGTH_SHORT).show();
+        }
+        //check for quantity
+        if (TextUtils.isEmpty(quantityEditText)) {
+            check = 1;
+            Toast.makeText(this, R.string.missing_product_quantity, Toast.LENGTH_SHORT).show();
+        }
+        //check for supplier name
+        if (TextUtils.isEmpty(supplierNameEditText)) {
+            check = 1;
+            Toast.makeText(this, R.string.missing_product_supplier_name, Toast.LENGTH_SHORT).show();
+        }
+        //check for supplier phone
+        if (TextUtils.isEmpty(supplierPhoneEditText)) {
+            check = 1;
+            Toast.makeText(this, R.string.missing_product_supplier_phone, Toast.LENGTH_SHORT).show();
+        }
+
+
         int price = Integer.parseInt(priceEditText);
         int quantity = Integer.parseInt(quantityEditText);
 
         //create db helper
         InventoryDbHelper mDbHelper = new InventoryDbHelper(this);
 
+        
         // Create a ContentValues object
         ContentValues values = new ContentValues();
         values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, nameEditText);
