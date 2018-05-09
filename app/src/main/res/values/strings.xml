@@ -39,4 +39,6 @@
     <string name="increase_quantity">Increase</string>
     <string name="quantity">Quantity:</string>
     <string name="price">Price:</string>
+    <string name="error_in_updating">There was an error in updating the quantity.</string>
+    <string name="quantity_bigger_then_one">No more items in stock</string>
 </resources>
