@@ -375,6 +375,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String quantityEditText = mQuantityEditText.getText().toString().trim();
         String supplierNameEditText = mSupplierNameEditText.getText().toString().trim();
         String supplierPhoneEditText = mSupplierPhoneEditText.getText().toString().trim();
+
         //check if all fields are empty
         //then add a toast message and return
         //check for name
@@ -410,28 +411,29 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //create db helper
         InventoryDbHelper mDbHelper = new InventoryDbHelper(this);
 
-        
-        // Create a ContentValues object
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, nameEditText);
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE, price);
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, supplierNameEditText);
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
+        if (check == 0) {
+            // Create a ContentValues object
+            ContentValues values = new ContentValues();
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_NAME, nameEditText);
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_PRICE, price);
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, supplierNameEditText);
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
 
-        // Use provider to insert data
-        Uri uri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
+            // Use provider to insert data
+            Uri uri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
 
-        // Show a toast message depending on whether or not the insertion was successful or not
-        //fail
-        if (uri == null) {
-            // If the row uri is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_SHORT).show();
-        }
-        //success
-        else {
-            finish();
-            Toast.makeText(this, getString(R.string.saving_success) + uri, Toast.LENGTH_SHORT).show();
+            // Show a toast message depending on whether or not the insertion was successful or not
+            //fail
+            if (uri == null) {
+                // If the row uri is null, then there was an error with insertion.
+                Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_SHORT).show();
+            }
+            //success
+            else {
+                finish();
+                Toast.makeText(this, getString(R.string.saving_success) + uri, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -440,23 +442,29 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
+        //increase quantity need to be bigger than 1
+        if (currentQuantity > 0) {
+            //crease current quantity by one
+            currentQuantity++;
+            ContentValues values = new ContentValues();
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
 
-        //crease current quantity by one
-        currentQuantity++;
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
+            int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
 
-        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
-
-        // Show a toast message depending on whether or not the increase was successful or not
-        //fail
-        if (rowsUpdated == -1) {
-            // If the row uri is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.increase_error), Toast.LENGTH_SHORT).show();
+            // Show a toast message depending on whether or not the increase was successful or not
+            //fail
+            if (rowsUpdated == -1) {
+                // If the row uri is null, then there was an error with insertion.
+                Toast.makeText(this, getString(R.string.increase_error), Toast.LENGTH_SHORT).show();
+            }
+            //success
+            else {
+                Toast.makeText(this, getString(R.string.increase_success), Toast.LENGTH_SHORT).show();
+            }
         }
-        //success
         else {
-            Toast.makeText(this, getString(R.string.increase_success), Toast.LENGTH_SHORT).show();
+            //if quantity is less than 0 display toast message
+            Toast.makeText(this, getString(R.string.invalid_quantity), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -465,23 +473,29 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
-        //crease current quantity by one
-        currentQuantity--;
+        //decrease quantity need to be bigger than 1
+        if (currentQuantity > 0) {
+            //crease current quantity by one
+            currentQuantity--;
 
-        ContentValues values = new ContentValues();
-        values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
+            ContentValues values = new ContentValues();
+            values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_QUANTITY, currentQuantity);
 
-        int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
+            int rowsUpdated = getContentResolver().update(mCurrentProductUri, values, null, null);
 
-        // Show a toast message depending on whether or not the decrease was successful or not
-        //fail
-        if (rowsUpdated == -1) {
-            // If the row uri is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.decrease_error), Toast.LENGTH_SHORT).show();
-        }
-        //success
-        else {
-            Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
+            // Show a toast message depending on whether or not the decrease was successful or not
+            //fail
+            if (rowsUpdated == -1) {
+                // If the row uri is null, then there was an error with insertion.
+                Toast.makeText(this, getString(R.string.decrease_error), Toast.LENGTH_SHORT).show();
+            }
+            //success
+            else {
+                Toast.makeText(this, getString(R.string.decrease_success), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            //if quantity is less than 0 display toast message
+            Toast.makeText(this, getString(R.string.invalid_quantity), Toast.LENGTH_SHORT).show();
         }
 
     }
