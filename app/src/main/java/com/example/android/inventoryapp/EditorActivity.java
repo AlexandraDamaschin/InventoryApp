@@ -43,6 +43,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     // Content URI for the existing product (null if it's a new product)
     private Uri mCurrentProductUri;
 
+    Uri sentUri = null;
+
     // Boolean flag that keeps track of whether the product has been edited (true) or not (false)
     private boolean mProductHasChanged = false;
 
@@ -231,8 +233,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             case R.id.action_save:
                 // Save pet to database
                 insertProduct();
-                // Exit activity
-                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -420,19 +420,40 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, supplierNameEditText);
             values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
 
-            // Use provider to insert data
-            Uri uri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
+            //new product: INSERT
+            if (sentUri == null) {
+                // This is a new product, so change the app bar to say "Add a Product"
+                setTitle(getString(R.string.editor_activity_title_new_product));
 
-            // Show a toast message depending on whether or not the insertion was successful or not
-            //fail
-            if (uri == null) {
-                // If the row uri is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_SHORT).show();
+                // Use provider to insert data
+                Uri insertUri = getContentResolver().insert(InventoryContract.ProductEntry.CONTENT_URI, values);
+
+                // Show a toast message depending on whether or not the insertion was successful or not
+                //fail
+                if (insertUri == null) {
+                    // If the row uri is null, then there was an error with insertion.
+                    Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    // Exit activity
+                    finish();
+                    Toast.makeText(this, R.string.saving_success, Toast.LENGTH_SHORT).show();
+                }
             }
-            //success
+            //UPDATE
             else {
-                finish();
-                Toast.makeText(this, getString(R.string.saving_success) + uri, Toast.LENGTH_SHORT).show();
+                // Otherwise this is an existing product, so change app bar to say "Edit Product"
+                setTitle(getString(R.string.editor_activity_title_edit_product));
+
+                //update the inf.
+                int newUpdate = getContentResolver().update(sentUri, values, null, null);
+                if (newUpdate == 0)
+                    Toast.makeText(this, R.string.error_in_updating, Toast.LENGTH_SHORT).show();
+                else {
+                    // Exit activity
+                    finish();
+                    Toast.makeText(this, R.string.editor_update_product_successful, Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -461,8 +482,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             else {
                 Toast.makeText(this, getString(R.string.increase_success), Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             //if quantity is less than 0 display toast message
             Toast.makeText(this, getString(R.string.invalid_quantity), Toast.LENGTH_SHORT).show();
         }
