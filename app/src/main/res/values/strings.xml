@@ -49,5 +49,5 @@
     <string name="missing_product_quantity">Product quantity is missing. Please enter a valid one and try again</string>
     <string name="missing_product_supplier_name">Product supplier name is missing. Please enter a valid one and try again</string>
     <string name="missing_product_supplier_phone">Product supplier phone is missing. Please enter a valid one and try again</string>
-
+    <string name="quantity_empty">Quantity field is empty</string>
 </resources>
