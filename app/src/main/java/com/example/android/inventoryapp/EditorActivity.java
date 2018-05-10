@@ -501,9 +501,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private void decreaseQuantity() {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
-        int currentQuantity = Integer.parseInt(quantity);
         //if quantity field is empty
         if (!TextUtils.isEmpty(quantity)) {
+            int currentQuantity = Integer.parseInt(quantity);
             //decrease quantity need to be bigger than 1
             if (currentQuantity >= 0) {
                 //crease current quantity by one
