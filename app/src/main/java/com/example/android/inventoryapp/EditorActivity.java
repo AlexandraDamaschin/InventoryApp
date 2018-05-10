@@ -466,7 +466,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
         //increase quantity need to be bigger than 1
-        if (!TextUtils.isEmpty(quantity) & currentQuantity >= 0) {
+        if (!TextUtils.isEmpty(quantity) && currentQuantity >= 0) {
             //crease current quantity by one
             currentQuantity++;
             ContentValues values = new ContentValues();
@@ -496,7 +496,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String quantity = mQuantityEditText.getText().toString();
         int currentQuantity = Integer.parseInt(quantity);
         //decrease quantity need to be bigger than 1
-        if (!TextUtils.isEmpty(quantity) & currentQuantity >= 0) {
+        if (!TextUtils.isEmpty(quantity) && currentQuantity >= 0) {
             //crease current quantity by one
             currentQuantity--;
 
