@@ -387,11 +387,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         if (TextUtils.isEmpty(priceEditText)) {
             check = 1;
             Toast.makeText(this, R.string.missing_product_price, Toast.LENGTH_SHORT).show();
+            return;
         }
         //check for quantity
         if (TextUtils.isEmpty(quantityEditText)) {
             check = 1;
             Toast.makeText(this, R.string.missing_product_quantity, Toast.LENGTH_SHORT).show();
+            return;
         }
         //check for supplier name
         if (TextUtils.isEmpty(supplierNameEditText)) {
