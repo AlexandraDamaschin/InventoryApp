@@ -74,7 +74,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         //get increase and decrease buttons
         Button increaseButton = findViewById(R.id.increase_quantity);
         Button decreaseButton = findViewById(R.id.decrease_quantity);
-        
+
         // If the intent DOES NOT contain a product content URI, then we know that we are
         // creating a new product.
         //INSERT
@@ -85,11 +85,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             //set increase and decrease buttons to be invisible
             increaseButton.setVisibility(GONE);
             decreaseButton.setVisibility(GONE);
-            
+
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a product that hasn't been created yet.)
             invalidateOptionsMenu();
-        } 
+        }
         //UPDATE
         else {
             // Otherwise this is an existing product, so change app bar to say "Edit Product"
@@ -473,7 +473,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     //increase quantity
     private void increaseQuantity() {
-        if (mCurrentProductUri != null) {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         //if quantity field is empty
@@ -508,11 +507,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         }
     }
-    }
 
     //decrease quantity
     private void decreaseQuantity() {
-           if (mCurrentProductUri != null) {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         //if quantity field is empty
@@ -547,6 +544,5 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             finish();
             Toast.makeText(this, getString(R.string.quantity_empty), Toast.LENGTH_SHORT).show();
         }
-           }
     }
 }
