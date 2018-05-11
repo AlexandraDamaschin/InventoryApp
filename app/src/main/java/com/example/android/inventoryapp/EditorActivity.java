@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.android.inventoryapp.data.InventoryContract;
 import com.example.android.inventoryapp.data.InventoryDbHelper;
 
+import static android.view.View.GONE;
+
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //global variables needed
@@ -69,16 +71,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
 
+        //get increase and decrease buttons
+        Button increaseButton = findViewById(R.id.increase_quantity);
+        Button decreaseButton = findViewById(R.id.decrease_quantity);
+        
         // If the intent DOES NOT contain a product content URI, then we know that we are
         // creating a new product.
+        //INSERT
         if (mCurrentProductUri == null) {
             // This is a new product, so change the app bar to say "Add a Product"
             setTitle(getString(R.string.editor_activity_title_new_product));
 
+            //set increase and decrease buttons to be invisible
+            increaseButton.setVisibility(GONE);
+            decreaseButton.setVisibility(GONE);
+            
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a product that hasn't been created yet.)
             invalidateOptionsMenu();
-        } else {
+        } 
+        //UPDATE
+        else {
             // Otherwise this is an existing product, so change app bar to say "Edit Product"
             setTitle(getString(R.string.editor_activity_title_edit_product));
 
@@ -105,7 +118,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
 
         //increase quantity
-        Button increaseButton = findViewById(R.id.increase_quantity);
         // Setup the item click listener
         increaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +127,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         });
 
         //increase quantity
-        Button decreaseButton = findViewById(R.id.decrease_quantity);
         // Setup the item click listener
         decreaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,7 +287,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button, so delete the product.
-                deletePet();
+                deleteProduct();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -295,7 +306,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //Perform the deletion of the pet in the database.
-    private void deletePet() {
+    private void deleteProduct() {
         // Only perform the delete if this is an existing pet.
         if (mCurrentProductUri != null) {
             // Call the ContentResolver to delete the product at the given content URI.
@@ -462,6 +473,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     //increase quantity
     private void increaseQuantity() {
+        if (mCurrentProductUri != null) {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         //if quantity field is empty
@@ -496,9 +508,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         }
     }
+    }
 
     //decrease quantity
     private void decreaseQuantity() {
+           if (mCurrentProductUri != null) {
         //get current quantity for current product
         String quantity = mQuantityEditText.getText().toString();
         //if quantity field is empty
@@ -533,5 +547,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             finish();
             Toast.makeText(this, getString(R.string.quantity_empty), Toast.LENGTH_SHORT).show();
         }
+           }
     }
 }
