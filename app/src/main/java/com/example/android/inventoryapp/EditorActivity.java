@@ -456,7 +456,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             //UPDATE
             else {
                 //update the inf.
-                int newUpdate = getContentResolver().update(sentUri, values, null, null);
+                int newUpdate = getContentResolver().update(mCurrentProductUri, values, null, null);
                 if (newUpdate == 0)
                     Toast.makeText(this, R.string.error_in_updating, Toast.LENGTH_SHORT).show();
                 else {
