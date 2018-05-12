@@ -434,7 +434,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             values.put(InventoryContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_PHONE, supplierPhoneEditText);
 
             //new product: INSERT
-            if (sentUri == null) {
+            if (mCurrentProductUri == null) {
                 // This is a new product, so change the app bar to say "Add a Product"
                 setTitle(getString(R.string.editor_activity_title_new_product));
 
@@ -455,9 +455,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
             //UPDATE
             else {
-                // Otherwise this is an existing product, so change app bar to say "Edit Product"
-                setTitle(getString(R.string.editor_activity_title_edit_product));
-
                 //update the inf.
                 int newUpdate = getContentResolver().update(sentUri, values, null, null);
                 if (newUpdate == 0)
