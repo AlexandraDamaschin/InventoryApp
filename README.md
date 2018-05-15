@@ -1,2 +1,2 @@
 ## InventoryApp
-#Android #SqlLite
+Android & SqlLite
